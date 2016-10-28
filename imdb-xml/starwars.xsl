@@ -9,9 +9,8 @@
 	</xsl:template>
 	
 	<xsl:template match="movie">
-		<movie>
+		<movie>			
 			<title><xsl:value-of select="@title"/></title>
-			
 			<!-- example of splited text nodes -->
 			<xsl:call-template name="tokenizeString">
 				<xsl:with-param name="list" select="@actors"/>
@@ -19,8 +18,9 @@
 				<xsl:with-param name="nodename" select="'actor'"/>
 			</xsl:call-template>
 			
+			<!-- -->
 				
-		</doc>
+		</movie>
 	</xsl:template>
 	
 	<!--############################################################-->
