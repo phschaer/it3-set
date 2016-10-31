@@ -10,26 +10,36 @@
 	
 	<xsl:template match="movie">
 		<doc>			
+			<!-- we recycle the imdbID for our system -->
+			<field name="id"><xsl:value-of select="@imdbID"/></field>
+			
 			<field name="title_t"><xsl:value-of select="@title"/></field>
 			<field name="year_s"><xsl:value-of select="@year"/></field>
 			<field name="rated_s"><xsl:value-of select="@rated"/></field>
 			<field name="released_s"><xsl:value-of select="@released"/></field>
 			<field name="runtime_s"><xsl:value-of select="@runtime"/></field>
-			<field name="genre_s"><xsl:value-of select="@genre"/></field>
 			<field name="director_s"><xsl:value-of select="@director"/></field>
-			<field name="writer_s"><xsl:value-of select="@writer"/></field>
 			<field name="plot_t"><xsl:value-of select="@plot"/></field>
 			<field name="language_s"><xsl:value-of select="@language"/></field>
 			<field name="country_s"><xsl:value-of select="@country"/></field>
 			<field name="awards_t"><xsl:value-of select="@awards"/></field>
 			<field name="poster_s"><xsl:value-of select="@poster"/></field>
-			<field name="metascore_i"><xsl:value-of select="@metascore"/></field>
-			<field name="imdbRating_f"><xsl:value-of select="@imdbRating"/></field>
-			<field name="imdbVotes_i"><xsl:value-of select="@imdbVotes"/></field>
+			<!-- metascore, imdbRating, and imdbVotes might contain non-integer values like N/A -->
+			<xsl:if test="not(@metascore='N/A')">
+				<field name="metascore_i"><xsl:value-of select="@metascore"/></field>
+			</xsl:if>
+			<xsl:if test="not(@imdbRating='N/A')">
+				<field name="imdbRating_f"><xsl:value-of select="@imdbRating"/></field>
+			</xsl:if>	
+			<xsl:if test="not(@imdbVotes='N/A')">
+				<!-- we use translate to get rid of the comma in the original number format -->
+				<field name="imdbVotes_i"><xsl:value-of select="translate(@imdbVotes,',','')"/></field>
+			</xsl:if>	
 			<field name="imdbID_s"><xsl:value-of select="@imdbID"/></field>
 			<field name="type_s"><xsl:value-of select="@type"/></field>			
 			
 			<!-- example of splited text nodes -->
+			<!-- actors -->
 			<xsl:call-template name="tokenizeString">
 				<xsl:with-param name="list" select="@actors"/>
 				<xsl:with-param name="delimiter" select="','"/>
@@ -37,8 +47,22 @@
 				<xsl:with-param name="attribute" select="'actor_ss'"/>
 			</xsl:call-template>
 			
-			<!-- -->
-				
+			<!-- genre -->
+			<xsl:call-template name="tokenizeString">
+				<xsl:with-param name="list" select="@genre"/>
+				<xsl:with-param name="delimiter" select="','"/>
+				<xsl:with-param name="nodename" select="'field'"/>
+				<xsl:with-param name="attribute" select="'genre_ss'"/>
+			</xsl:call-template>			
+			
+			<!-- writer -->
+			<xsl:call-template name="tokenizeString">
+				<xsl:with-param name="list" select="@writer"/>
+				<xsl:with-param name="delimiter" select="','"/>
+				<xsl:with-param name="nodename" select="'field'"/>
+				<xsl:with-param name="attribute" select="'writer_ss'"/>
+			</xsl:call-template>	
+							
 		</doc>
 	</xsl:template>
 	
@@ -58,7 +82,7 @@
 	        <xsl:choose>
 	            <xsl:when test="contains($list, $delimiter)">			
 					<xsl:element name="{$nodename}">
-						<xsl:attribute name="name"><xsl:value-of select="$attribute"/></xsl:attribute>						
+						<xsl:attribute name="name"><xsl:value-of select="$attribute"/></xsl:attribute>	
 	                    <!-- get everything in front of the first delimiter -->
 	                    <xsl:value-of select="normalize-space(substring-before($list,$delimiter))"/>
 					</xsl:element>
@@ -77,6 +101,7 @@
 	                    </xsl:when>
 	                    <xsl:otherwise>
 	                        <xsl:element name="{$nodename}">
+								<xsl:attribute name="name"><xsl:value-of select="$attribute"/></xsl:attribute>
 	                            <xsl:value-of select="normalize-space($list)"/>
 	                        </xsl:element>
 	                    </xsl:otherwise>
