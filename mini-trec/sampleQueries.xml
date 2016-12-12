@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <topics>
-<topic lang="en">
-<identifier>126-DS</identifier>
-<title>New Art</title>
-<description>Find documents which discuss Postmodern art.</description>
-<narrative>Relevant documents discuss contemporary art, art genres and artists. Documents that consider any specific genre belonging to Postmodernism in the fields of literature, music, fine arts, etc., are also relevant.</narrative>
-</topic>
-<topic lang="en">
-<identifier>127-DS</identifier>
-<title>Electoral Behaviour</title>
-<description>Find documents that discuss the behaviour of voters in national parliamentary or presidential elections.</description>
-<narrative>Relevant documents give reasons for voters' decisions in elections for the national parliament or for the president. A relevant document must explain why one or more voters have decided on a specific party or person.</narrative>
-</topic>
+	<topic lang="de">
+		<identifier>126</identifier>
+		<title>Neue Kunst</title>
+		<description>Finde Dokumente, die über Kunst in der Postmoderne berichten.</description>
+		<narrative>Relevante Dokumente berichten über zeitgenössische Kunst oder Kunstrichtungen oder deren Künstler. Relevant sind Dokumente, wenn sie allgemein über moderne Kunst und/oder deren Schöpfer berichten. Relevante Dokumente können auch eine spezielle Richtung in der Literatur, Musik, Malerei, bildnerischen Kunst usw. der Postmoderne betrachten.</narrative>
+	</topic>
+	<topic lang="de">
+		<identifier>127</identifier>
+		<title>Wählerverhalten</title>
+		<description>Finde Dokumente, die das Verhalten von Wählern bei Wahlentscheidungen zu nationalen Parlaments- oder Präsidentschaftswahlen diskutieren.</description>
+		<narrative>Relevante Dokumente nennen Gründe für die Wahlentscheidungen von Wählern bei nationalen Parlaments- oder Präsidentenwahlen. Ein relevantes Dokument muss die Frage beantworten, warum sich ein oder mehrere Wähler für die Stimmabgabe für eine Partei oder eine Person entschieden haben.</narrative>
+	</topic>
 </topics>
