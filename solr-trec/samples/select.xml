@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+
+<lst name="responseHeader">
+  <int name="status">0</int>
+  <int name="QTime">1</int>
+  <lst name="params">
+    <str name="q">death star chewbacca lego</str>
+    <str name="indent">on</str>
+    <str name="fl">id,score,title_txt_en</str>
+    <str name="wt">xml</str>
+  </lst>
+</lst>
+<result name="response" numFound="353" start="0" maxScore="5.239055">
+  <doc>
+    <str name="id">tt0185712</str>
+    <str name="title_txt_en">Super Star Wars: Return of the Jedi</str>
+    <float name="score">5.239055</float></doc>
+  <doc>
+    <str name="id">tt2402600</str>
+    <str name="title_txt_en">Lego Star Wars: The Empire Strikes Out</str>
+    <float name="score">4.607798</float></doc>
+  <doc>
+    <str name="id">tt0486613</str>
+    <str name="title_txt_en">Lego Star Wars: The Video Game</str>
+    <float name="score">3.9408033</float></doc>
+  <doc>
+    <str name="id">tt0190804</str>
+    <str name="title_txt_en">Star Wars: Masters of Teräs Käsi</str>
+    <float name="score">3.6626675</float></doc>
+  <doc>
+    <str name="id">tt0827187</str>
+    <str name="title_txt_en">Lego Star Wars II: The Original Trilogy</str>
+    <float name="score">3.6451077</float></doc>
+  <doc>
+    <str name="id">tt1149396</str>
+    <str name="title_txt_en">Lego Star Wars: The Complete Saga</str>
+    <float name="score">3.6451077</float></doc>
+  <doc>
+    <str name="id">tt5430544</str>
+    <str name="title_txt_en">Lego Star Wars: The Force Awakens</str>
+    <float name="score">3.6451077</float></doc>
+  <doc>
+    <str name="id">tt2008565</str>
+    <str name="title_txt_en">Lego Star Wars: Revenge of the Brick</str>
+    <float name="score">3.6445744</float></doc>
+  <doc>
+    <str name="id">tt2839328</str>
+    <str name="title_txt_en">Lego Star Wars: The Yoda Chronicles - Secret Plans Are Revealed</str>
+    <float name="score">3.6445744</float></doc>
+  <doc>
+    <str name="id">tt0304746</str>
+    <str name="title_txt_en">Star Wars: Rogue Squadron II - Rogue Leader</str>
+    <float name="score">3.5078635</float></doc>
+</result>
+</response>
