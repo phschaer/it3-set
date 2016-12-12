@@ -7,7 +7,9 @@
 # @author: philipp.schaer@th-koeln.de
 ####################
 
-import urllib, json
+import urllib.request
+import urllib.parse
+import json
 import xml.etree.ElementTree as ET
 
 
@@ -30,11 +32,11 @@ root = tree.getroot()
 for topic in root.findall('topic'):
     query = topic.find('title').text
     topicId = topic.find('identifier').text
-    solrURL = solrBase+solrInstance+"/select"+solrParams+"&q="+str(query)
-    print "Querying " + topicId + " at " + solrURL        
-
-    response = urllib.urlopen(solrURL)
-    data = json.loads(response.read())
+    solrURL = solrBase+solrInstance+"/select"+solrParams+"&q="+str(urllib.parse.quote(query))
+    print("Querying " + topicId + " at " + solrURL)
+    
+    response = urllib.request.urlopen(solrURL)
+    data = json.loads(response.read().decode('utf-8'))
     #print json.dumps(data)
 
     for i,d in enumerate(data['response']['docs']):
