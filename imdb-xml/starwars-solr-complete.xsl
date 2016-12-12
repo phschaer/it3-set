@@ -14,9 +14,9 @@
 			<field name="id"><xsl:value-of select="@imdbID"/></field>
 			
 			<!-- Text data -->
-			<field name="title_t"><xsl:value-of select="@title"/></field>
-			<field name="plot_t"><xsl:value-of select="@plot"/></field>
-			<field name="awards_t"><xsl:value-of select="@awards"/></field>
+			<field name="title_txt_en"><xsl:value-of select="@title"/></field>
+			<field name="plot_txt_en"><xsl:value-of select="@plot"/></field>
+			<field name="awards_txt_en"><xsl:value-of select="@awards"/></field>
 
 			<!-- String data -->
 			<field name="imdbID_s"><xsl:value-of select="@imdbID"/></field>
@@ -29,7 +29,6 @@
 			<field name="language_s"><xsl:value-of select="@language"/></field>
 			<field name="country_s"><xsl:value-of select="@country"/></field>
 			<field name="poster_s"><xsl:value-of select="@poster"/></field>
-			<field name="writer_s"><xsl:value-of select="@writer"/></field>
 
 			<!-- metascore, imdbRating, and imdbVotes might contain non-integer values like N/A -->
 			<xsl:if test="not(@metascore='N/A')">
@@ -69,6 +68,14 @@
 				<xsl:with-param name="nodename" select="'field'"/>
 				<xsl:with-param name="attribute" select="'genre_ss'"/>
 			</xsl:call-template>			
+			
+			<!-- writer -->
+			<xsl:call-template name="tokenizeString">
+				<xsl:with-param name="list" select="@writer"/>
+				<xsl:with-param name="delimiter" select="','"/>
+				<xsl:with-param name="nodename" select="'field'"/>
+				<xsl:with-param name="attribute" select="'writer_ss'"/>
+			</xsl:call-template>	
 							
 		</doc>
 	</xsl:template>

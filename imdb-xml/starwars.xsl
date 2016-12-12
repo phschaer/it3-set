@@ -2,7 +2,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="xml" indent="yes" />
 	
-	<xsl:template match="/">
+	<xsl:template match="imdb">
+		<!-- a more general way to express the root tag: <xsl:template mmatch="/" -->
 		<imdb>		
 			<xsl:apply-templates/>  
 		</imdb>
@@ -10,6 +11,7 @@
 	
 	<xsl:template match="movie">
 		<movie>			
+			<id><xsl:value-of select="@imdbID"/></id>
 			<title><xsl:value-of select="@title"/></title>
 			
 			<!-- example of splited text nodes -->
