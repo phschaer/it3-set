@@ -2,3 +2,5 @@ simpleRun.txt
 *.xml
 *.zip
 *.csv
+*.txt
+*.xlsx

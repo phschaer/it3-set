@@ -16,7 +16,7 @@ from subprocess import call
 root = "/Users/schaer/sciebo/AIW-Suchmaschinen/Abgaben-03"
 qrelsDE = '/Users/schaer/sciebo/AIW-Suchmaschinen/Abgaben-03/qrels/all-DE.txt'
 qrelsEN = '/Users/schaer/sciebo/AIW-Suchmaschinen/Abgaben-03/qrels/all-EN.txt'
-measures = ["P_5 ","P_10 ","map ","bpref "]
+measures = ["P_5 ","P_10 ","map ","bpref ","num_rel_ret", "recip_rank"]
 
 ####################################################################
 # Function block
@@ -24,6 +24,10 @@ measures = ["P_5 ","P_10 ","map ","bpref "]
 
 f1 = open('mini-trec126-200.csv', 'w')
 f2 = open('mini-trec201-225.csv', 'w')
+
+header = "teamname;lang;run;measure;value\n"
+f1.write(header)
+f2.write(header)
 
 for file in os.listdir(root):
     if file.endswith(".txt"):
@@ -34,16 +38,19 @@ for file in os.listdir(root):
         
         filepath = os.path.join(root, file)
         print(filepath)
-        result = check_output(['trec_eval', qrelsDE, filepath], universal_newlines=True)
-        call(["trec_eval", qrelsDE, filepath], universal_newlines=True)
+        if '-DE-' in file:
+            result = check_output(['trec_eval', qrelsDE, filepath], universal_newlines=True)
+        if '-EN-' in file:
+            result = check_output(['trec_eval', qrelsEN, filepath], universal_newlines=True)
+        #call(["trec_eval", qrelsDE, filepath], universal_newlines=True)
         
         for line in result.split('\n'):
             for m in measures:
                 if line.startswith(m):
-                    line = '\t'.join([teamname, lang, run, m, line.split()[2], str('\n')])
-                    if "126-200-DE" in file:
+                    line = ';'.join([teamname, lang, run, m, line.split()[2].replace('.',','), str('\n')])
+                    if "126-200" in file:
                         f1.write(line)
-                    if "201-225-DE" in file:
+                    if "201-225" in file:
                         f2.write(line)
                     
                 
